@@ -1,0 +1,14 @@
+<div class="metric-cards">
+  <div class="metric-card" *ngFor="let card of cards" [style.border-left-color]="card.color">
+    <div class="card-content">
+      <div class="card-icon" [style.background]="card.color + '20'">
+        <span class="material-icons" [style.color]="card.color">{{card.icon}}</span>
+      </div>
+      <div class="card-info">
+        <h4>{{card.title}}</h4>
+        <h2>{{card.value}}</h2>
+        <p>{{card.subtitle}}</p>
+      </div>
+    </div>
+  </div>
+</div>
