@@ -1,0 +1,77 @@
+<div class="page-container" *ngIf="project; else notFound">
+  <div class="page-header">
+    <div>
+      <a routerLink="/projects" class="back-link">← Back to Projects</a>
+      <h1 class="page-title">{{ project.name }}</h1>
+    </div>
+    <div class="actions">
+      <a [routerLink]="['/projects', project.id, 'edit']" class="btn btn-secondary">Edit</a>
+      <button class="btn btn-danger" (click)="deleteProject()">Delete</button>
+    </div>
+  </div>
+
+  <div class="detail-grid">
+    <div class="detail-card">
+      <h2>Project Details</h2>
+      <div class="detail-row">
+        <span class="detail-label">Status</span>
+        <span class="badge badge-{{ project.status }}">{{ project.status }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Location</span>
+        <span>{{ project.location }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Budget</span>
+        <span>{{ project.budget | currency }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Start Date</span>
+        <span>{{ project.startDate }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">End Date</span>
+        <span>{{ project.endDate }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Description</span>
+        <span>{{ project.description }}</span>
+      </div>
+    </div>
+
+    <div class="detail-card">
+      <div class="panel-header">
+        <h2>Tasks</h2>
+        <span class="task-count">{{ tasks.length }} tasks</span>
+      </div>
+      <table class="data-table" *ngIf="tasks.length > 0; else noTasks">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Priority</th>
+            <th>Due Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks">
+            <td>{{ task.title }}</td>
+            <td><span class="badge badge-{{ task.status }}">{{ task.status }}</span></td>
+            <td><span class="badge badge-{{ task.priority }}">{{ task.priority }}</span></td>
+            <td>{{ task.dueDate }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #noTasks>
+        <p class="empty-state">No tasks for this project.</p>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<ng-template #notFound>
+  <div class="page-container">
+    <p class="empty-state">Project not found.</p>
+    <a routerLink="/projects" class="btn btn-primary">Back to Projects</a>
+  </div>
+</ng-template>
