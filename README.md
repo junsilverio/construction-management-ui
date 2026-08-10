@@ -1,59 +1,157 @@
-# BuildproUi
+# BuildPro - Construction Management UI
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.3.
+A comprehensive Angular-based construction management dashboard built with responsive design and real-time capabilities.
 
-## Development server
+## Features
 
-To start a local development server, run:
+### Dashboard Overview
+- **Project Overview & Key Metrics**: Display total projects, overall progress, budget, costs, open issues, and overdue tasks
+- **Project Status Overview**: Interactive donut chart showing project distribution by status (On Track, At Risk, Delayed, Completed)
+- **Projects Timeline**: Gantt-style timeline visualization for project scheduling
+- **Recent Activities Feed**: Real-time feed of project activities and updates
+- **Quick Actions**: Fast access to common operations (New Project, Create Task, Upload Document, etc.)
+- **Alerts & Notifications**: Priority-based alert system for important updates
+- **Weather & Site Conditions**: Current weather and forecast for construction sites
+- **Budget vs Actual**: Bar chart comparing budgeted vs actual costs across projects
+- **Cost Breakdown**: Pie chart showing cost distribution by category
+- **Resource Utilization**: Gauge charts for labor, equipment, and materials usage
+- **Documents Overview**: Quick access to project documents with counts
+- **Integrations & Connectors**: Visual display of integrated third-party tools
+- **My Tasks Summary**: Personal task dashboard with status breakdown
+- **Project Phase Distribution**: Flow chart showing project distribution across phases
 
+### Technical Features
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- **Real-Time Updates**: WebSocket service ready for live data updates
+- **Modular Architecture**: Component-based structure for easy maintenance
+- **Modern Angular**: Built with Angular 22 (standalone components)
+- **SCSS Styling**: Organized and maintainable stylesheets
+- **TypeScript**: Type-safe development experience
+
+## Getting Started
+
+### Prerequisites
+- Node.js 18.x or higher
+- npm 10.x or higher
+
+### Installation
+
+1. Clone the repository:
 ```bash
-ng serve
+git clone <repository-url>
+cd construction-management-ui
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+2. Install dependencies:
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+3. Run the development server:
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
+4. Open your browser and navigate to `http://localhost:4200`
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Building for Production
 
 ```bash
-ng test
+npm run build
 ```
 
-## Running end-to-end tests
+The build artifacts will be stored in the `dist/` directory.
 
-For end-to-end (e2e) testing, run:
+## Project Structure
 
-```bash
-ng e2e
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── dashboard/           # Dashboard widgets and charts
+│   │   │   ├── metric-cards/
+│   │   │   ├── status-chart/
+│   │   │   ├── timeline-chart/
+│   │   │   ├── activities-feed/
+│   │   │   ├── quick-actions/
+│   │   │   ├── alerts/
+│   │   │   ├── weather/
+│   │   │   ├── budget-chart/
+│   │   │   ├── cost-chart/
+│   │   │   ├── resource-gauge/
+│   │   │   ├── documents/
+│   │   │   ├── integrations/
+│   │   │   ├── tasks-summary/
+│   │   │   └── phase-distribution/
+│   │   └── layout/              # Layout components
+│   │       ├── header/
+│   │       └── sidebar/
+│   ├── core/
+│   │   ├── models/              # Data models
+│   │   └── services/            # Core services
+│   │       ├── dashboard.service.ts
+│   │       └── websocket.service.ts
+│   ├── app.routes.ts
+│   └── app.ts
+├── styles.scss                   # Global styles
+└── index.html
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Technologies Used
 
-## Additional Resources
+- **Angular 22**: Latest Angular framework with standalone components
+- **TypeScript 6**: Type-safe JavaScript superset
+- **SCSS**: Powerful CSS preprocessor
+- **RxJS**: Reactive programming for asynchronous operations
+- **Material Icons**: Icon library for UI elements
+- **Inter Font**: Modern, professional typography
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Design System
+
+### Colors
+- **Primary Blue**: `#1976D2` - Headers, primary actions
+- **Success Green**: `#66BB6A` - Completed items, success states
+- **Warning Orange**: `#FFB300` - At-risk items, warnings
+- **Error Red**: `#E53935` - Delayed items, errors
+- **Info Blue**: `#42A5F5` - Informational elements
+- **Purple**: `#AB47BC` - Secondary actions
+
+### Typography
+- **Font Family**: Inter, system fonts fallback
+- **Heading Sizes**: 1rem - 2.5rem
+- **Body Text**: 0.85rem - 1rem
+
+### Spacing
+- **Base Unit**: 0.25rem (4px)
+- **Common Spacing**: 0.5rem, 1rem, 1.5rem, 2rem
+
+## Real-Time Features
+
+The application includes a WebSocket service placeholder for real-time updates. To connect to an actual WebSocket server, update the `websocket.service.ts` file with your server URL and connection logic.
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Future Enhancements
+
+- User authentication and authorization
+- Project management CRUD operations
+- Task management system
+- Document management with file upload
+- Advanced reporting and analytics
+- Mobile native applications
+- Offline mode support
+- Multi-language support
+- Dark mode theme
+
+## License
+
+This project is licensed under the MIT License.
+
+## Version
+
+Current version: 1.0.0
