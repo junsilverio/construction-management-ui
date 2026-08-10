@@ -1,0 +1,59 @@
+<header class="header">
+  <div class="header-left">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40">
+          <rect x="5" y="10" width="8" height="25" fill="#1976D2"/>
+          <rect x="16" y="5" width="8" height="30" fill="#42A5F5"/>
+          <rect x="27" y="15" width="8" height="20" fill="#64B5F6"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <h1>BuildPro</h1>
+        <p>Construction & Project Management</p>
+      </div>
+    </div>
+    <button class="menu-toggle">
+      <span class="material-icons">menu</span>
+    </button>
+    <h2 class="page-title">Dashboard</h2>
+  </div>
+  
+  <div class="header-center">
+    <div class="search-bar">
+      <span class="material-icons">search</span>
+      <input 
+        type="text" 
+        placeholder="Search projects, tasks, documents..." 
+        (input)="onSearch($event)"
+      />
+    </div>
+  </div>
+  
+  <div class="header-right">
+    <button class="icon-button" (click)="openNotifications()">
+      <span class="material-icons">notifications</span>
+      <span class="badge" *ngIf="notificationCount > 0">{{notificationCount}}</span>
+    </button>
+    
+    <button class="icon-button" (click)="openMessages()">
+      <span class="material-icons">mail</span>
+      <span class="badge" *ngIf="messageCount > 0">{{messageCount}}</span>
+    </button>
+    
+    <button class="icon-button" (click)="openHelp()">
+      <span class="material-icons">help_outline</span>
+    </button>
+    
+    <div class="user-profile" (click)="openProfile()">
+      <div class="avatar">
+        <span class="material-icons">person</span>
+      </div>
+      <div class="user-info">
+        <span class="user-name">{{userName}}</span>
+        <span class="user-role">{{userRole}}</span>
+      </div>
+      <span class="material-icons">expand_more</span>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,77 @@
+<div class="dashboard">
+  <div class="dashboard-header">
+    <h2>CONSTRUCTION & PROJECT MANAGEMENT DASHBOARD</h2>
+  </div>
+
+  <div class="dashboard-section">
+    <div class="section-header">
+      <h3>PROJECT OVERVIEW & KEY METRICS</h3>
+    </div>
+    <app-metric-cards [cards]="metricCards"></app-metric-cards>
+  </div>
+
+  <div class="dashboard-grid">
+    <div class="grid-item status-overview">
+      <app-status-chart [data]="projectStatus"></app-status-chart>
+    </div>
+
+    <div class="grid-item timeline">
+      <app-timeline-chart [projects]="projects"></app-timeline-chart>
+    </div>
+
+    <div class="grid-item activities">
+      <app-activities-feed [activities]="activities"></app-activities-feed>
+    </div>
+  </div>
+
+  <div class="dashboard-grid-2">
+    <div class="grid-item actions">
+      <app-quick-actions></app-quick-actions>
+    </div>
+
+    <div class="grid-item alerts">
+      <app-alerts [alerts]="alerts"></app-alerts>
+    </div>
+
+    <div class="grid-item weather">
+      <app-weather [weather]="weather"></app-weather>
+    </div>
+  </div>
+
+  <div class="dashboard-grid-3">
+    <div class="grid-item budget">
+      <app-budget-chart [data]="budgetData"></app-budget-chart>
+    </div>
+
+    <div class="grid-item cost">
+      <app-cost-chart [data]="costBreakdown"></app-cost-chart>
+    </div>
+
+    <div class="grid-item resources">
+      <app-resource-gauge [resources]="resources"></app-resource-gauge>
+    </div>
+
+    <div class="grid-item documents">
+      <app-documents [documents]="documents"></app-documents>
+    </div>
+  </div>
+
+  <div class="dashboard-grid-4">
+    <div class="grid-item integrations">
+      <app-integrations [integrations]="integrations"></app-integrations>
+    </div>
+
+    <div class="grid-item tasks">
+      <app-tasks-summary [tasks]="tasks"></app-tasks-summary>
+    </div>
+
+    <div class="grid-item phases">
+      <app-phase-distribution [phases]="projectPhases"></app-phase-distribution>
+    </div>
+  </div>
+
+  <div class="dashboard-footer">
+    <p>© 2025 BuildPro Construction & Project Management System. All rights reserved.</p>
+    <p>Version 1.0.0</p>
+  </div>
+</div>
