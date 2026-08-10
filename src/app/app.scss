@@ -1,9 +1,15 @@
 .app-container {
   display: flex;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 60px);
+
+  @media (min-width: 1400px) {
+    height: calc(100vh - 70px);
+  }
 
   .main-content {
     flex: 1;
     overflow-y: auto;
+    overflow-x: hidden;
+    min-width: 0;
   }
 }
