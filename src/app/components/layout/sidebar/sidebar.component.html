@@ -1,0 +1,56 @@
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h3>MAIN NAVIGATION</h3>
+  </div>
+
+  <nav class="main-nav">
+    <a 
+      *ngFor="let item of menuItems"
+      [routerLink]="item.route"
+      routerLinkActive="active"
+      class="nav-item"
+      (click)="toggleMenuItem(item)"
+    >
+      <span class="material-icons">{{item.icon}}</span>
+      <span class="label">{{item.label}}</span>
+      <span class="material-icons arrow" *ngIf="item.children">chevron_right</span>
+      <span class="indicator" *ngIf="item.label === 'Dashboard'"></span>
+    </a>
+  </nav>
+
+  <div class="sidebar-section">
+    <h3>SYSTEM</h3>
+  </div>
+
+  <nav class="system-nav">
+    <a 
+      *ngFor="let item of systemItems"
+      [routerLink]="item.route"
+      routerLinkActive="active"
+      class="nav-item"
+    >
+      <span class="material-icons">{{item.icon}}</span>
+      <span class="label">{{item.label}}</span>
+      <span class="material-icons arrow" *ngIf="item.children">chevron_right</span>
+    </a>
+  </nav>
+
+  <div class="active-project">
+    <div class="section-header">
+      <h4>ACTIVE PROJECT</h4>
+    </div>
+    <div class="project-card">
+      <h5>{{activeProject.name}}</h5>
+      <p>{{activeProject.type}}</p>
+      <div class="progress-bar">
+        <div class="progress" [style.width.%]="activeProject.progress"></div>
+      </div>
+      <div class="progress-info">
+        <span>{{activeProject.progress}}%</span>
+      </div>
+      <button class="switch-project" (click)="switchProject()">
+        Switch Project
+      </button>
+    </div>
+  </div>
+</aside>
