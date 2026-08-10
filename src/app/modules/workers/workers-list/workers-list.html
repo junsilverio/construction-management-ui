@@ -1,0 +1,37 @@
+<div class="page-container">
+  <div class="page-header">
+    <h1 class="page-title">Workers</h1>
+  </div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Assigned Project</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let worker of workers">
+        <td>{{ worker.name }}</td>
+        <td>{{ worker.role }}</td>
+        <td>{{ worker.phone }}</td>
+        <td>{{ worker.email }}</td>
+        <td>
+          <a *ngIf="worker.projectId; else noProject" [routerLink]="['/projects', worker.projectId]">
+            {{ getProjectName(worker.projectId) }}
+          </a>
+          <ng-template #noProject>—</ng-template>
+        </td>
+        <td>
+          <span class="badge" [class.badge-available]="worker.available" [class.badge-in-progress]="!worker.available">
+            {{ worker.available ? 'Available' : 'Assigned' }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

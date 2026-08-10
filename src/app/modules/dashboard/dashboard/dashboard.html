@@ -1,0 +1,89 @@
+<div class="dashboard">
+  <h1 class="page-title">Dashboard</h1>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon projects-icon">📋</div>
+      <div class="stat-info">
+        <div class="stat-value">{{ totalProjects }}</div>
+        <div class="stat-label">Total Projects</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon active-icon">🔨</div>
+      <div class="stat-info">
+        <div class="stat-value">{{ activeProjects }}</div>
+        <div class="stat-label">Active Projects</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon tasks-icon">✅</div>
+      <div class="stat-info">
+        <div class="stat-value">{{ pendingTasks }}</div>
+        <div class="stat-label">Pending Tasks</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon workers-icon">👷</div>
+      <div class="stat-info">
+        <div class="stat-value">{{ totalWorkers }}</div>
+        <div class="stat-label">Workers</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon equipment-icon">🚜</div>
+      <div class="stat-info">
+        <div class="stat-value">{{ availableEquipment }}</div>
+        <div class="stat-label">Available Equipment</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-panels">
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Recent Projects</h2>
+        <a routerLink="/projects" class="view-all">View All</a>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let project of recentProjects">
+            <td><a [routerLink]="['/projects', project.id]">{{ project.name }}</a></td>
+            <td><span class="badge badge-{{ project.status }}">{{ project.status }}</span></td>
+            <td>{{ project.location }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Recent Tasks</h2>
+        <a routerLink="/tasks" class="view-all">View All</a>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of recentTasks">
+            <td>{{ task.title }}</td>
+            <td><span class="badge badge-{{ task.status }}">{{ task.status }}</span></td>
+            <td><span class="badge badge-{{ task.priority }}">{{ task.priority }}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
