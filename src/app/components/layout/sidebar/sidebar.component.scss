@@ -1,17 +1,17 @@
 .sidebar {
-  width: 280px;
-  height: calc(100vh - 70px);
+  width: 240px;
+  height: calc(100vh - 60px);
   background: #F8F9FA;
   border-right: 1px solid #E0E0E0;
   overflow-y: auto;
-  padding: 1.5rem 0;
+  padding: 1rem 0;
   position: sticky;
-  top: 70px;
+  top: 60px;
 
   @media (max-width: 768px) {
     position: fixed;
-    left: -280px;
-    top: 70px;
+    left: -240px;
+    top: 60px;
     z-index: 99;
     transition: left 0.3s;
 
@@ -22,11 +22,11 @@
 
   .sidebar-header,
   .sidebar-section {
-    padding: 0 1.5rem;
-    margin-bottom: 0.75rem;
+    padding: 0 1rem;
+    margin-bottom: 0.5rem;
 
     h3 {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 700;
       color: #999;
       margin: 0;
@@ -36,25 +36,25 @@
 
   .main-nav,
   .system-nav {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 
     .nav-item {
       position: relative;
       display: flex;
       align-items: center;
-      padding: 0.75rem 1.5rem;
+      padding: 0.65rem 1rem;
       color: #666;
       text-decoration: none;
       transition: all 0.3s;
-      gap: 0.75rem;
+      gap: 0.65rem;
 
       .material-icons {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
       }
 
       .label {
         flex: 1;
-        font-size: 0.95rem;
+        font-size: 0.875rem;
         font-weight: 500;
       }
 

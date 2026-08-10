@@ -1,0 +1,434 @@
+.projects-container {
+  padding: 1.5rem;
+  background: #F5F7FA;
+  min-height: calc(100vh - 60px);
+
+  .projects-header {
+    margin-bottom: 1.25rem;
+
+    .header-content {
+      background: white;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      h2 {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: #1976D2;
+        margin: 0;
+      }
+
+      .header-actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+
+        .btn {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.65rem 1rem;
+          border-radius: 6px;
+          border: none;
+          font-size: 0.875rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s;
+
+          .material-icons {
+            font-size: 1.15rem;
+          }
+
+          &.btn-primary {
+            background: #1976D2;
+            color: white;
+
+            &:hover {
+              background: #1565C0;
+            }
+          }
+
+          &.btn-secondary {
+            background: #F5F5F5;
+            color: #666;
+            border: 1px solid #E0E0E0;
+
+            &:hover {
+              background: #E0E0E0;
+            }
+
+            &:disabled {
+              opacity: 0.5;
+              cursor: not-allowed;
+            }
+          }
+
+          &.btn-danger {
+            background: #E53935;
+            color: white;
+
+            &:hover {
+              background: #D32F2F;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .projects-grid-container {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+
+    .grid-wrapper {
+      height: 450px;
+      width: 100%;
+      
+      ::ng-deep .ag-theme-alpine {
+        --ag-header-height: 45px;
+        --ag-header-foreground-color: #333;
+        --ag-header-background-color: #F8F9FA;
+        --ag-odd-row-background-color: #FAFAFA;
+        --ag-row-hover-color: rgba(25, 118, 210, 0.08);
+        --ag-selected-row-background-color: rgba(25, 118, 210, 0.12);
+        --ag-font-size: 0.875rem;
+        --ag-row-height: 50px;
+      }
+
+      ::ng-deep .ag-header-cell-label {
+        font-weight: 600;
+        font-size: 0.875rem;
+      }
+    }
+
+    .gantt-section {
+      border-top: 1px solid #E0E0E0;
+      padding: 1.25rem;
+
+      .gantt-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        gap: 1rem;
+        flex-wrap: wrap;
+
+        .gantt-title {
+          h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #333;
+            margin: 0 0 0.25rem 0;
+          }
+
+          p {
+            font-size: 0.875rem;
+            color: #666;
+            margin: 0;
+          }
+        }
+
+        .gantt-controls {
+          display: flex;
+          gap: 0.5rem;
+
+          .view-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #E0E0E0;
+            background: white;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+
+            &:hover {
+              background: #F5F5F5;
+            }
+
+            &.active {
+              background: #1976D2;
+              color: white;
+              border-color: #1976D2;
+            }
+          }
+        }
+      }
+
+      .gantt-container {
+        min-height: 350px;
+        overflow: auto;
+        border: 1px solid #E0E0E0;
+        border-radius: 8px;
+        padding: 1rem;
+        background: #FAFAFA;
+
+        ::ng-deep .gantt {
+          .bar {
+            fill: #42A5F5;
+          }
+
+          .bar-progress {
+            fill: #1976D2;
+          }
+
+          .bar.completed {
+            fill: #66BB6A;
+          }
+
+          .bar.in-progress {
+            fill: #42A5F5;
+          }
+
+          .bar.at-risk {
+            fill: #FFB300;
+          }
+
+          .bar.pending {
+            fill: #BDBDBD;
+          }
+        }
+      }
+    }
+
+    .no-selection {
+      padding: 4rem 2rem;
+      text-align: center;
+      color: #999;
+
+      .material-icons {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+      }
+
+      p {
+        font-size: 1rem;
+        margin: 0;
+      }
+    }
+  }
+}
+
+// Modal Styles
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s;
+
+  .modal-content {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 700px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s;
+
+    &.small {
+      max-width: 450px;
+    }
+
+    .modal-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid #E0E0E0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #333;
+        margin: 0;
+      }
+
+      .close-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #333;
+        }
+
+        .material-icons {
+          font-size: 1.5rem;
+        }
+      }
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+      flex: 1;
+
+      .form-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1rem;
+
+        .form-group {
+          display: flex;
+          flex-direction: column;
+
+          &.full-width {
+            grid-column: 1 / -1;
+          }
+
+          label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+          }
+
+          input,
+          select,
+          textarea {
+            padding: 0.65rem;
+            border: 1px solid #E0E0E0;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+
+            &:focus {
+              outline: none;
+              border-color: #1976D2;
+            }
+
+            &::placeholder {
+              color: #999;
+            }
+          }
+
+          textarea {
+            resize: vertical;
+          }
+        }
+      }
+
+      p {
+        margin: 0 0 1rem 0;
+        font-size: 0.95rem;
+        color: #333;
+
+        &.warning {
+          color: #E53935;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .modal-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid #E0E0E0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Print Styles
+@media print {
+  .projects-header .header-actions,
+  .gantt-section,
+  .modal-overlay {
+    display: none !important;
+  }
+
+  .projects-grid-container {
+    box-shadow: none;
+  }
+
+  .grid-wrapper {
+    height: auto !important;
+    page-break-inside: avoid;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .projects-container {
+    padding: 1rem;
+  }
+
+  .projects-header .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .header-actions {
+      width: 100%;
+      
+      .btn {
+        flex: 1;
+      }
+    }
+  }
+
+  .gantt-section .gantt-header {
+    flex-direction: column;
+    align-items: stretch;
+
+    .gantt-controls {
+      justify-content: center;
+    }
+  }
+
+  .modal-content {
+    width: 95%;
+    max-height: 95vh;
+
+    .modal-body .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+}

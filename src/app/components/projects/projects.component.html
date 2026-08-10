@@ -1,0 +1,184 @@
+<div class="projects-container">
+  <div class="projects-header">
+    <div class="header-content">
+      <h2>PROJECT MANAGEMENT</h2>
+      <div class="header-actions">
+        <button class="btn btn-primary" (click)="openAddDialog()">
+          <span class="material-icons">add</span>
+          Add Project
+        </button>
+        <button class="btn btn-secondary" (click)="exportToExcel()">
+          <span class="material-icons">download</span>
+          Export to Excel
+        </button>
+        <button class="btn btn-secondary" (click)="exportToMSProject()" [disabled]="!selectedProject">
+          <span class="material-icons">download</span>
+          Export to MS Project
+        </button>
+        <button class="btn btn-secondary" (click)="printProjects()">
+          <span class="material-icons">print</span>
+          Print
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="projects-grid-container">
+    <div class="grid-wrapper">
+      <ag-grid-angular
+        class="ag-theme-alpine"
+        [rowData]="projects"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [rowSelection]="'single'"
+        [animateRows]="true"
+        [pagination]="true"
+        [paginationPageSize]="20"
+        (gridReady)="onGridReady($event)"
+        (selectionChanged)="onSelectionChanged($event)"
+        style="width: 100%; height: 100%;">
+      </ag-grid-angular>
+    </div>
+
+    <div class="gantt-section" *ngIf="selectedProject">
+      <div class="gantt-header">
+        <div class="gantt-title">
+          <h3>{{ selectedProject.name }} - Project Timeline</h3>
+          <p>{{ selectedProject.description }}</p>
+        </div>
+        <div class="gantt-controls">
+          <button class="view-btn" (click)="changeGanttView('Day')">Day</button>
+          <button class="view-btn" (click)="changeGanttView('Week')">Week</button>
+          <button class="view-btn active" (click)="changeGanttView('Month')">Month</button>
+        </div>
+      </div>
+      <div class="gantt-container" #ganttContainer></div>
+    </div>
+
+    <div class="no-selection" *ngIf="!selectedProject">
+      <span class="material-icons">timeline</span>
+      <p>Select a project to view its Gantt chart</p>
+    </div>
+  </div>
+</div>
+
+<!-- Add/Edit Project Dialog -->
+<div class="modal-overlay" *ngIf="showAddEditDialog" (click)="closeAddEditDialog()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ isEditMode ? 'Edit Project' : 'Add New Project' }}</h3>
+      <button class="close-btn" (click)="closeAddEditDialog()">
+        <span class="material-icons">close</span>
+      </button>
+    </div>
+    <form [formGroup]="projectForm" (ngSubmit)="saveProject()">
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Project Name *</label>
+            <input type="text" formControlName="name" placeholder="Enter project name">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group full-width">
+            <label>Description *</label>
+            <textarea formControlName="description" rows="3" placeholder="Enter project description"></textarea>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>Status *</label>
+            <select formControlName="status">
+              <option value="planning">Planning</option>
+              <option value="in-progress">In Progress</option>
+              <option value="on-hold">On Hold</option>
+              <option value="at-risk">At Risk</option>
+              <option value="delayed">Delayed</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>Priority *</label>
+            <select formControlName="priority">
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+              <option value="critical">Critical</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label>Progress *</label>
+            <input type="number" formControlName="progress" min="0" max="100" placeholder="0-100">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>Start Date *</label>
+            <input type="date" formControlName="startDate">
+          </div>
+          
+          <div class="form-group">
+            <label>End Date *</label>
+            <input type="date" formControlName="endDate">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>Budget *</label>
+            <input type="number" formControlName="budget" min="0" placeholder="Enter budget">
+          </div>
+          
+          <div class="form-group">
+            <label>Actual Cost</label>
+            <input type="number" formControlName="actualCost" min="0" placeholder="Enter actual cost">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>Location *</label>
+            <input type="text" formControlName="location" placeholder="Enter location">
+          </div>
+          
+          <div class="form-group">
+            <label>Manager Name *</label>
+            <input type="text" formControlName="managerName" placeholder="Enter manager name">
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeAddEditDialog()">Cancel</button>
+        <button type="submit" class="btn btn-primary" [disabled]="projectForm.invalid">
+          {{ isEditMode ? 'Update Project' : 'Add Project' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Delete Confirmation Dialog -->
+<div class="modal-overlay" *ngIf="showDeleteDialog" (click)="closeDeleteDialog()">
+  <div class="modal-content small" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Confirm Delete</h3>
+      <button class="close-btn" (click)="closeDeleteDialog()">
+        <span class="material-icons">close</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete the project "{{ projectToDelete?.name }}"?</p>
+      <p class="warning">This action cannot be undone.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="closeDeleteDialog()">Cancel</button>
+      <button class="btn btn-danger" (click)="confirmDelete()">Delete</button>
+    </div>
+  </div>
+</div>
